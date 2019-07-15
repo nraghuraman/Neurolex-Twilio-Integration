@@ -1,0 +1,39 @@
+.App {
+  text-align: center;
+  background-color: black;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Courier New";
+}
+
+h1 {
+	color: green;
+	font-size: 40px;
+}
+
+h2 {
+	color: white;
+	margin-left: 100px;
+	margin-right: 100px;
+}
+
+h3, label {
+	color: white;
+}
+
+h3:hover {
+	color: green;
+}
+
+textarea {
+	min-width: 400px;
+	min-height: 150px;
+}
+
+input {
+	margin-left: 10px;
+	margin-right: 10px;
+}
