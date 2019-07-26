@@ -7,7 +7,7 @@ class TextForm extends React.Component {
 			numbers: '',
 			message: '',
 			frequency: '',
-			frequencyUnits: '',
+			frequencyUnits: 'minutes',
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -15,7 +15,14 @@ class TextForm extends React.Component {
 	}
 
 	handleSubmit() {
-		this.props.pageChange('thankyou');
+		this.props.submitFormData({
+			numbers: this.state.numbers,
+			message: this.state.message,
+			frequency: this.state.frequency,
+			frequencyUnits: this.state.frequencyUnits,
+		}, () => {
+			this.props.pageChange('thankyou');
+		}, () => {});
 	}
 
 	handleInputChange(e) {
@@ -31,7 +38,7 @@ class TextForm extends React.Component {
   render() {
 	  return (
 			<div>
-			  <form>
+			  <form id="messagesForm">
 			  	<h2>Numbers to send, entered with + and the country code (ie. +12345678910), with each number separated by a single comma and no spaces:</h2>
 				  <textarea name="numbers" value={this.state.numbers} onChange={this.handleInputChange} />
 				  <h2>Message to send:</h2>
@@ -44,6 +51,7 @@ class TextForm extends React.Component {
 						  <option value="minutes">Minutes</option>
 						  <option value="hours">Hours</option>
 						  <option value="days">Days</option>
+						  <option value="seconds">Seconds</option>
 						</select>
 					</label>
 				</form>

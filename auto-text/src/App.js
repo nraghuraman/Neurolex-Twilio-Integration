@@ -3,6 +3,7 @@ import WelcomePage from './WelcomePage';
 import TextForm from './TextForm';
 import ThankYou from './ThankYou';
 import './App.css';
+import { submitFormData } from './api';
 
 class App extends React.Component {
 	constructor(props) {
@@ -26,7 +27,7 @@ class App extends React.Component {
 		if (this.state.pageType === 'welcome') {
 			page = <WelcomePage pageChange={this.handleClick}/>;
 		} else if (this.state.pageType === 'form') {
-			page = <TextForm pageChange={this.handleClick}/>;
+			page = <TextForm pageChange={this.handleClick} submitFormData={submitFormData}/>;
 		} else {
 			page = <ThankYou pageChange={this.handleClick}/>;
 		}
