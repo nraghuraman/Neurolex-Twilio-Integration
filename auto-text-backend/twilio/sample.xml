@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+  <Say>
+    {{#MessageToRead}}
+    {{ . }}
+    {{/MessageToRead}}
+    {{^MessageToRead}}
+    Please respond to the survey question on the screen.
+    {{/MessageToRead}} 
+  </Say>
+  <Record/>
+</Response>

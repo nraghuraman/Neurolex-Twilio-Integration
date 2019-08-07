@@ -21,8 +21,8 @@ class TextForm extends React.Component {
 			frequency: this.state.frequency,
 			frequencyUnits: this.state.frequencyUnits,
 		}, () => {
-			this.props.pageChange('thankyou');
-		}, () => {});
+			this.props.pageChange('thankYou-textForm');
+		}, () => {}, 'sms');
 	}
 
 	handleInputChange(e) {

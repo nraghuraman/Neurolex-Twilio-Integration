@@ -1,8 +1,7 @@
-var schedule = require('node-schedule');
-
-const accountSid = 'ENTER IN ACCOUNT SID (removed for security)';
-const authToken = 'ENTER IN AUTH TOKEN (removed for security)';
+const accountSid = 'My accountSid, removed for security';
+const authToken = 'My authToken, removed for security';
 const client = require('twilio')(accountSid, authToken);
+const schedule = require('node-schedule');
 
 const sendAutomatedTexts = (numbers, message, frequency, frequencyUnits) => {
 	let frequencyOfTexts;
@@ -24,7 +23,7 @@ const sendAutomatedTexts = (numbers, message, frequency, frequencyUnits) => {
 			client.messages
 			  .create({
 			     body: message,
-			     from: '+MY NUMBER (removed for security)',
+			     from: '+My Twilio number, removed for security',
 			     to: numbersToSendTo[i],
 			   })
 			  .then(message => console.log(message.sid));
@@ -32,4 +31,19 @@ const sendAutomatedTexts = (numbers, message, frequency, frequencyUnits) => {
 	});
 };
 
+const callNumber = (number, message) => {
+  const messageToSend = message.replace(/ /g, '+');
+
+	client.calls
+    .create({
+      // The below url contains the TwiML specifications for the call, including that it will be recorded.
+      // See sample.xml for the full XML which is used to configure the call.
+      url: `https://handler.twilio.com/twiml/EHd6c8777ee2485a475b5bb3c1c5943780?MessageToRead=${messageToSend}`,
+      to: number,
+      from: '+My Twilio number, removed for security'
+    })
+    .then(call => console.log(call.sid));
+};
+
 module.exports.sendAutomatedTexts = sendAutomatedTexts;
+module.exports.callNumber = callNumber;
