@@ -1,5 +1,5 @@
 const express = require('express');
-const twilio = require('../twilio/send-sms');
+const twilio = require('../twilio/twilio-functions');
 const router = express.Router();
 const VoiceResponse = require('twilio').twiml.VoiceResponse;
 
@@ -23,14 +23,6 @@ router.post('/callforminformation', async function(req, res) {
   await twilio.callNumber(number, message);
 
   res.sendStatus(200);
-});
-
-router.post('/voicecallinformation', async function(req, res) {
-  const twiml = new VoiceResponse();
-  twiml.say({ voice: 'alice' }, 'Welcome to your SurveyLex survey!');
-
-  res.type('text/xml');
-  res.send(twiml.toString());
 });
 
 module.exports = router;

@@ -1,7 +1,10 @@
-const accountSid = 'My accountSid, removed for security';
-const authToken = 'My authToken, removed for security';
+/* Paste your account SID, auth token, and Twilio number in the designated sections below */
+const accountSid = 'YOUR ACCOUNT SID';
+const authToken = 'YOUR AUTH TOKEN';
 const client = require('twilio')(accountSid, authToken);
 const schedule = require('node-schedule');
+
+const twilioNumber = 'YOUR TWILIO NUMBER';
 
 const sendAutomatedTexts = (numbers, message, frequency, frequencyUnits) => {
 	let frequencyOfTexts;
@@ -23,7 +26,7 @@ const sendAutomatedTexts = (numbers, message, frequency, frequencyUnits) => {
 			client.messages
 			  .create({
 			     body: message,
-			     from: '+My Twilio number, removed for security',
+			     from: twilioNumber,
 			     to: numbersToSendTo[i],
 			   })
 			  .then(message => console.log(message.sid));
@@ -34,13 +37,21 @@ const sendAutomatedTexts = (numbers, message, frequency, frequencyUnits) => {
 const callNumber = (number, message) => {
   const messageToSend = message.replace(/ /g, '+');
 
+  /*
+   * The below variable contains the name of the URL from which the configuration for the phone call
+   * is read by Twilio. To create a URL with XML that can be exposed to Twilio, go to your Twilio account
+   * and add a new TwiML bin with the XML code specified in './sample.xml'. Then, paste the URL to the bin
+   * below. This XML configuration code will read the message specified in messageToSend to the user when
+   * the user is called and will record their response. You will then be able to find the recording under the
+   * Recordings section of your Twilio console.
+   */
+  const twimlURL = 'YOUR URL';
+
 	client.calls
     .create({
-      // The below url contains the TwiML specifications for the call, including that it will be recorded.
-      // See sample.xml for the full XML which is used to configure the call.
-      url: `https://handler.twilio.com/twiml/EHd6c8777ee2485a475b5bb3c1c5943780?MessageToRead=${messageToSend}`,
+      url: `${twimlURL}?MessageToRead=${messageToSend}`,
       to: number,
-      from: '+My Twilio number, removed for security'
+      from: twilioNumber,
     })
     .then(call => console.log(call.sid));
 };
