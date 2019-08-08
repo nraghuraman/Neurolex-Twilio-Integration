@@ -10,4 +10,6 @@ To try out this system:
 2. Follow the directions in the file `auto-text-backend/twilio/twilio-functions` to add your credentials to the code and add the correct XML configuration to your Twilio console.
 3. In the terminal, run `npm i` in both `auto-text-backend` and `auto-text` followed by `npm start` in both.
 
+This project was coded with a React frontend and a Node.js/Express backend.
+
 I hope to add to this project in the future. Stay tuned for any updates!
