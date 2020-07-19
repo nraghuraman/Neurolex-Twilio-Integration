@@ -12,4 +12,7 @@ To try out this system:
 
 In addition to the React frontend, this project was created with a Node.js/Express backend.
 
-I hope to add to this project in the future. Stay tuned for any updates!
+I hope to add to this project in the future. In particular, here are some potential areas for improvement:
+
+1. The UI for this web application is still fairly bare. I would be interested in making it more compelling and interesting to use without sacrificing the simplicity.
+2. The functionality is limited to the two uses listed above. There may be more use cases of Twilio in NeuroLex's products that I did not explore.
